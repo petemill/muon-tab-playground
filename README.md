@@ -8,3 +8,5 @@ An example app focusing on tab's within muon, in order to expose, visualise and 
 2. cd muon-tab-playground
 3. npm install
 4. npm start
+
+![Screenshot](muon-tab-playground-1.png?raw=true)
