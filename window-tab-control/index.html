@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tab Debug Window</title>
+  <link rel="stylesheet" href="./tab-control.css" />
+  <script src="./tab-control.js"></script>
+</head>
+<body>
+
+  <div class="tool">
+    <div class="control">
+      <h2 class="tool__section-title">Control</h2>
+      <form class="tabcommand">
+      <span>On tabId:</span>
+      <input data-property="tabId" class="tabcommand__tabId" type="number" />
+      <span>, run </span>
+      <span class="tabcommand__prefix">tab.</span>
+      <input data-property="command" class="tabcommand__command" />
+        <button class="tabcommand__run" type="submit">Run</button>
+  </div>
+    </form>
+    
+    <div class="create"></div>
+  </div>
+
+</body>
+</html>

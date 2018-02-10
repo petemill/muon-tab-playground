@@ -1,0 +1,78 @@
+
+body {
+  background: #222;
+  color: white;
+  --border-color: #ddd;
+  font-family: sans-serif;
+}
+
+.tool
+{
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 0; right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.tool__section-title
+{
+  font-size: 28px;
+}
+
+.tabcommand
+{
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.tabcommand input
+{
+  background: #444;
+  color: inherit;
+  font-size: inherit;
+  border: none;
+}
+.tabcommand input:hover
+{
+  background: #555;
+}
+.tabcommand input:active,
+.tabcommand input:focus
+{
+  outline: white 2px;
+}
+.tabcommand__prefix
+{
+  font-family: monospace;
+  margin-left: 5px;
+}
+
+.tabcommand__tabId
+{
+  width: 35px;
+}
+
+.tabcommand__command
+{
+  flex: 1;
+  font-family: monospace;
+}
+
+.tabcommand__run
+{  
+  background: #666;
+  border: solid 1px #555;
+  align-self: stretch;
+  margin-left: 5px;
+  color: inherit;
+  cursor: pointer;
+}
+.tabcommand__run:hover
+{
+  background: #888;
+}

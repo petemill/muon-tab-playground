@@ -1,0 +1,26 @@
+{
+  "name": "muon-tab-playground",
+  "productName": "Muon Tab Playground",
+  "version": "1.0.0",
+  "description": "An example app focusing on tab's within muon, in order to expose, visualise and provide control over all of muon's functions related to Tabs and WebContents",
+  "main": "browser",
+  "scripts": {
+    "start": "node start.js"
+  },
+  "repository": "https://github.com/petemill/muon-tab-playground",
+  "keywords": [
+    "Muon",
+    "quick",
+    "start",
+    "tutorial",
+    "demo"
+  ],
+  "author": "Brave Software",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron-prebuilt": "brave/electron-prebuilt"
+  },
+  "dependencies": {
+    "standard": "^10.0.3"
+  }
+}
