@@ -1,0 +1,27 @@
+<html>
+<head>
+  <style type="text/css">
+    * { margin: 0; }
+    #browser { height: 70%; }
+    #devtools { height: 30%; }
+  </style>
+</head>
+<body>
+  <webview id="browser" src="https://github.com"></webview>
+  <webview id="devtools" name="browserAction" src="about:blank"></webview>
+  <script>
+    const browserView = document.getElementById('browser')
+    const devtoolsView = document.getElementById('devtools')
+    devtoolsView.addEventListener('did-attach', (e) => {
+      const tabId = e.tabId
+      console.log('did attach devtools dock', tabId)
+      chrome.ipcRenderer.send('register-window-devtools-dock', { tabId })
+    })
+
+    browserView.addEventListener('dom-ready', () => {
+      const tabId = browserView.getId()
+      chrome.ipcRenderer.send('attach-devtools', { tabId })
+    })
+  </script>
+</body>
+</html>

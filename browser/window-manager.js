@@ -1,5 +1,5 @@
 const electron = require('electron')
-const { BrowserWindow, app } = electron
+const { BrowserWindow, app, ipcMain } = electron
 
 let displaySize
 let screen
@@ -18,6 +18,9 @@ app.once('ready', () => {
     height: Math.floor((displaySize.height / 2) - 50)
   }
   browserWindowNextX = displaySize.width - Math.floor(displaySize.width / 3) - 50
+  ipcMain.on('open-dockable-devtools', () => {
+    api.newDockedDevtoolsDemoWindow()
+  })
 })
 
 const api = module.exports = {
@@ -83,5 +86,17 @@ const api = module.exports = {
     }
     tabControlWindow.loadURL('chrome://brave/' + __dirname + '/../window-tab-control/index.html')
     return tabControlWindow
+  },
+
+  newDockedDevtoolsDemoWindow () {
+    const win = new BrowserWindow({
+      title: 'Muon Dockable Devtools Demo Window',
+      webPreferences: {
+        sharedWorker: true,
+        partition: 'default'
+      }
+    })    
+    win.loadURL('chrome://brave/' + __dirname + '/../window-docked-devtools/index.html')
+    return win
   }
 }

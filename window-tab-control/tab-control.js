@@ -27,4 +27,8 @@ function runTabCommand (commandArgs) {
 
 document.addEventListener('DOMContentLoaded', function () {
   setupTabCommandForm()
+  const buttonDockableDevtoolsDemo = document.querySelector('.windowcommand--dockabledevtools')
+  buttonDockableDevtoolsDemo.addEventListener('click', () => {
+    chrome.ipcRenderer.send('open-dockable-devtools')
+  })
 })

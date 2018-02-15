@@ -1,6 +1,8 @@
-const { ipcMain } = require('electron')
+const { ipcMain, webContents } = require('electron')
 const TabManager = require('./window-manager')
 const TabStore = require('./tab-store')
+
+let devToolsWebContents
 
 const api = module.exports = {
   init () {
@@ -33,6 +35,16 @@ const api = module.exports = {
       const result = eval(fullCommand)
       console.log(`Command [${tabId}]: ${fullCommand}`)
       console.log('Result: ', result)
+    })
+    ipcMain.on('register-window-devtools-dock', (event, {tabId}) => {
+      console.log('setting devtools webconts to', tabId)
+      devToolsWebContents = TabStore.get(tabId)
+    })
+    ipcMain.on('attach-devtools', (event, action) => {
+      const { tabId } = action
+      const tab = TabStore.get(Number(tabId))
+      tab.setDevToolsWebContents(devToolsWebContents)
+      tab.openDevTools()
     })
   }
 }

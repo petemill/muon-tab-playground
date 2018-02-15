@@ -133,14 +133,16 @@ const api = module.exports = {
     const tabEventsHandledUniquely = ['ipc-message-host', 'ipc-message']
 
     app.on('web-contents-created', function (event, tab) {
+      const tabId = tab.getId()
+      webContentsCache.set(tabId, tab)
+      updateTabFromEvent(tabId, 'app:web-contents-created')
       if (tab.isBackgroundPage() || !tab.isGuest()) {
         console.log(tab.getId() + ' was not a guest tab')
         return
       }
       console.log('web-contents-created', tab.getURL() + ' ' + tab.getTitle() + ' ' + tab.getEntryCount())
-      const tabId = tab.getId()
-      webContentsCache.set(tabId, tab)
-      updateTabFromEvent(tabId, 'app:web-contents-created')
+      
+      
 
       if (shouldDebugTabEvents) {
         console.log(`Tab [${tabId}] created in window ${tab.tabValue().windowId}`)
