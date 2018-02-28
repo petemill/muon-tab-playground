@@ -40,5 +40,13 @@ const api = module.exports = {
 const commands = {
   createTab (createProperties) {
     TabManager.createTab(createProperties)
+  },
+  activateTab (tabId) {
+    const tab = TabStore.get(Number(tabId))
+    if (!tab) {
+      console.error(`No tab found with tab id ${tabId}`)
+      return
+    }
+    tab.setActive(true)
   }
 }

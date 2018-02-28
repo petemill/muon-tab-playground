@@ -1,7 +1,8 @@
-function updateTabTitleElement (tabElement, tabData) {
-  let titleElement = tabElement.querySelector('.tab_title')
+function updateTabTitleElement (titleElement, tabData) {
   if (titleElement && (titleElement.dataset.tabId !== tabData.tabId || titleElement.dataset.tabUrl !== tabData.url)) {
     titleElement.innerHTML = `Tab Id: ${tabData.tabId}, ${tabData.url}`
+    titleElement.dataset.tabId = tabData.tabId
+    titleElement.dataset.tabUrl = tabData.url
   }
 }
 
@@ -64,7 +65,14 @@ function findOrCreateTabElement (tabData) {
   tab.dataset.tabId = tabData.tabId
   tab.dataset.tabIndex = tabData.index
   tab.style.order = tabData.index
-  updateTabTitleElement(tab, tabData)
+  const titleElement = tab.querySelector('.tab_title')
+  titleElement.addEventListener('mousedown', () => {
+    chrome.ipcRenderer.send('tab-command', {
+      name: 'activateTab',
+      options: tabId
+    })
+  })
+  updateTabTitleElement(titleElement, tabData)
   return tab
 }
 

@@ -14,7 +14,7 @@ app.once('ready', () => {
   screen = electron.screen
   displaySize = screen.getPrimaryDisplay().workAreaSize
   defaultSize = {
-    width: Math.floor(displaySize.width / 3),
+    width: Math.floor(displaySize.width / 1.5),
     height: Math.floor((displaySize.height / 2) - 50)
   }
   browserWindowNextX = displaySize.width - Math.floor(displaySize.width / 3) - 50
@@ -34,7 +34,7 @@ const api = module.exports = {
       }
     })
     browserWindowNextY += size.height + 50
-    if (allDevTools) {
+    if (allDevTools || true) {
       win.openDevTools()
     }
     win.loadURL('chrome://brave/' + __dirname + '/../window-renderer/index.html')

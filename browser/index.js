@@ -26,15 +26,29 @@ app.once('ready', async () => {
   // create tabs
   TabManager.createTab({
     url: 'http://www.brave.com',
-    windowId: win1.id
+    windowId: win1.id,
+    active: true,
+    discarded: false,
+    autoDiscardable: true
   })
   TabManager.createTab({
     url: 'http://www.google.com',
-    windowId: win2.id
+    windowId: win2.id,
+    active: false,
+    discarded: true,
+    autoDiscardable: true
   })
 
   TabManager.createTab({
     url: 'http://www.bing.com',
-    windowId: win2.id
+    windowId: win2.id,
+    active: false,
+    discarded: false
+  })
+
+  TabManager.createTab({
+    url: 'http://www.duckduckgo.com',
+    windowId: win2.id,
+    active: true
   })
 })
